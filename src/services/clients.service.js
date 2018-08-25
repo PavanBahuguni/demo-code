@@ -45,6 +45,7 @@ class ClientService {
             console.log(`Got data response ${clients.length} for page ${page}`);
             const res = await clientData.saveClients(clients);
             console.log('Saved validated clients to the database', res.length);
+            // can also maintain retryCounts for each page and exit if it reaches a certain limit to avaoid going into infinite loop.
             if(nextPage) {
                 // If the currently crawled page has a next page, we need to parse that page as well.
                 this.insertData(nextPage);
