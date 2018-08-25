@@ -44,9 +44,10 @@ class ClientData {
     async updateClient(id, newData) {
         const res = await Client.findById(id);
         const client = Client({
-            ...res,
+            ...res._doc,
             ...newData
         });
+        console.log(client);
         try {
             await client.validate();
             const result = await Client.update({ _id: id }, newData);
