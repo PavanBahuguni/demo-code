@@ -2,9 +2,10 @@ const { EXPRESS_CLIENT_ENDPOINT, ERROR_CODES } = require('../config');
 const { clientService } = require('../services');
 
 module.exports = function (app) {
-
+    // route to crawl the page and generate data.
     app.put(`${EXPRESS_CLIENT_ENDPOINT}generateData`, async(req, res) => {
         try {
+            // '' is to get the data for first page.
             await clientService.insertData('');
         } catch (err) {
             console.log('Error in generateData', err);
